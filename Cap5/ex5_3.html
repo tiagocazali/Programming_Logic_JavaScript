@@ -1,0 +1,19 @@
+<script>
+    
+    let numero;
+    
+    do{
+        numero = Number(prompt("Digite um numero: "))
+        if(numero <= 0 || isNaN(numero)){
+            alert("Numero Invalido. Digite um número Positivo!")
+        }
+
+    }while(numero <= 0 || isNaN(numero))
+
+    let pares = `Pares entre 1 e ${numero} são: `
+    for(let i=2; i<=numero; i=i+2){
+        pares = pares + i + ", "
+    }
+
+    alert(pares)
+</script>

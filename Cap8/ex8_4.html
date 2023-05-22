@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/livrojs.png" type="image/x-icon">
+    <link rel="stylesheet" href="estilos.css">
+    <title>Pedidos de Pizza</title>
+</head>
+<body>
+    <img src="img/ex8_4.jpg" alt="pizza"class="normal" >
+    <h1>Pizzaria Cazali - Controle de pedidos</h1>
+
+    <form>
+        <p>Itens do pedido: 
+            <input type="radio" name="produto" id="btRadioPizza" checked >Pizza
+            <input type="radio" name="produto" id="btRadioBebida">Bebida
+
+            <span>Item: </span>
+            
+            <select id="btSelectPizza">
+                <option value="media">Pizza Média</option>
+                <option value="grande">Pizza Grande</option>
+                <option value="familia">Pizza Familia</option>
+            </select> 
+
+            <select id="btSelectBebida" class="oculta"> <!--Essa lista esta com a classe oculta no CSS, por isso não aparece-->
+                <option value="refrigerante">Refrigerante</option>
+                <option value="suco">Suco</option>
+                <option value="agua">Água</option>
+            </select>
+        </p>
+
+        <p>Detalhes do item: 
+            <input type="text" id="inDetalhes" class="detalhes">
+            <input type="submit" value="Adicionar"> 
+        </p>
+    
+    </form>
+
+    <pre></pre>
+
+    <script src="js/ex8_4.js"></script>
+
+</body>
+</html>

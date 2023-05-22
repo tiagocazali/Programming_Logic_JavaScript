@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/livrojs.png" type="image/x-icon">
+    <link rel="stylesheet" href="estilo.css">
+    <title>Desconto de Multa</title>
+</head>
+<body>
+    <img src="img/exerc.jpg" alt="a mesma">
+    <h1>Multa de Trânsito</h1>
+
+    <form>
+        <p>Data da Infração: <input type="date" id="inData" required></p>
+        <p>Valor da multa R$: <input type="number" min="0" step="0.01" id="inValor"></p>
+        <input type="submit" value="Calcular data Limite e valor com desconto">
+    </form>
+
+    <h3 id="out1"></h3>
+    <h3 id="out2"></h3>
+
+    <script src="js/ex7_14.js"></script>
+</body>
+</html>
