@@ -1,4 +1,4 @@
-# Logica de Programação e Algaritmos com JavaScript
+# Logica de Programação e Algoritmos com JavaScript
 Exercícios e exemplos do livro: Lógica de Programagação e Algoritmos com JavaScript - 2ª Ed - Novatec - Edécio Fernando lepsen
 Feitos por mim durante o estudo do livro.
 
