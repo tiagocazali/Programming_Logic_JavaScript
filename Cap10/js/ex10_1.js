@@ -77,6 +77,14 @@ frm.btGravar.addEventListener("click", () => {
 
 })
 
+frm.btApagarTudo.addEventListener("click", () => {
+
+    if(confirm("Quer mesmo apagar toda a lista?")){
+        localStorage.clear()
+        window.location.reload()
+    }
+})
+
 window.addEventListener("load", () => {
 
     if(localStorage.getItem("tarefas")){
