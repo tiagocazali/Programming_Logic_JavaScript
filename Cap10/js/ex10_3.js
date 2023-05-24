@@ -51,6 +51,28 @@ function gravarLista(titulo, genero){
 
 }
 
+tbFilmes.addEventListener("click", (e) => {
+
+    if(e.target.className.includes("exclui")){
+        
+        const titulo = e.target.parentElement.parentElement.children[0].innerText
+        
+        if(confirm("Quer mesmo excluir o filme: " + titulo + " ?")){
+            e.target.parentElement.parentElement.remove()
+            localStorage.clear()    //deleta TODO o local Storage
+
+            //agora cria um NOVO LocalStorage só com a lista de filmes que estão na tabela
+            for(let i=1; i<tbFilmes.rows.length; i++){
+                let auxFilme = tbFilmes.rows[i].cells[0].innerText      //coluna 0 - Nome do Filme
+                let auxGenero = tbFilmes.rows[i].cells[1].innerText     //coluna 1 - Genero do filme
+
+                gravarLista(auxFilme, auxGenero)
+            }
+        }        
+    }
+})
+
+
 window.addEventListener("load", () => {
     if(localStorage.getItem("listaFilmes")){
         
@@ -62,5 +84,3 @@ window.addEventListener("load", () => {
         }
     }
 })
-
-
