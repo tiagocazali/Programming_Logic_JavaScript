@@ -8,11 +8,11 @@ frm.addEventListener("submit", (e) => {
     const idade = frm.inIdade.value //É uma String!
 
     //para cada numero dessa idade, colocar a vela de numero correspondente
-    for(let i=0; i<idade.length; i++){
+    for(let i in idade){
 
         const foto = document.createElement("img")
         foto.src = `img/${idade[i]}.jpg`
-        foto.descricao = `Foto da vela de ${idade[i]}`
+        foto.alt = `Foto da vela de ${idade[i]}`
         
         areaVelas.appendChild(foto)
     }
@@ -24,5 +24,5 @@ frm.addEventListener("submit", (e) => {
 
 //Se clicar em "Novas Velas", recarrega a página
 frm.btReset.addEventListener("click",() =>{ 
-    window.location.reload()
+    location.reload()
 })
