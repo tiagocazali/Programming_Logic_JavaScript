@@ -6,3 +6,13 @@ img.poltrona { width: 24; height: 16px; }
 .entreLetras { letter-spacing: 0.5em; }
 .exclui { color: red; cursor: pointer; }
 .corFundo { background-color:lightskyblue; }
+
+.normal {width: 420px; height: 420px;}
+
+#areaPrincipal{
+    
+}
+
+#teste{
+    background-color: blue;
+}
