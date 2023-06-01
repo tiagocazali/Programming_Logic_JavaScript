@@ -72,4 +72,4 @@ window.addEventListener("load", () => {
 })
 
 
-AQUI EventSource, NA MINHA MASTER!!!!
+// AQUI EventSource, NA MINHA MASTER!!!!
