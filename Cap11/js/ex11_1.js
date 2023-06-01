@@ -71,4 +71,5 @@ window.addEventListener("load", () => {
     mostrarCavalos()
 })
 
-teste
+
+AQUI EventSource, NA MINHA MASTER!!!!
