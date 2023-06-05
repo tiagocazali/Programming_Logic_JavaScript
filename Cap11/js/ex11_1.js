@@ -3,11 +3,12 @@ const areaApostasAtual = document.querySelector("#outApostaAtual")
 const areaListaCavalos = document.querySelector("#outListaCavalos")
 const areaPrincipal = document.querySelector("#outPrincipal")
 
-//por enquanto a lista de cavalos esta fixa. Masvai ser dinamica depois
+//por enquanto a lista de cavalos esta fixa. Mas vai ser dinamica depois
 const listaCavalos = ["Marujo", "Tordilho", "Belga", "Twister", "Jade", "Luck"];
-const apostas = [{cavalo:0, valor:100},{cavalo:1, valor:200},{cavalo:2, valor:300}];
+const apostas = [{cavalo:0, valor:100},{cavalo:1, valor:200},{cavalo:2, valor:300},
+                 {cavalo:3, valor:400},{cavalo:4, valor:500},{cavalo:5, valor:600},
+                 {cavalo:1, valor:150},{cavalo:3, valor:160},{cavalo:5, valor:170}];
 
-mostrarApostas()
 
 function mostrarCavalos() {
 
@@ -49,7 +50,6 @@ frm.inNumeroCavalo.addEventListener("blur", () => {
         return;
     }
 
-
     let numero = (frm.inNumeroCavalo.value)-1
     let contador = 0
     let soma = 0
@@ -69,6 +69,7 @@ frm.inNumeroCavalo.addEventListener("blur", () => {
 //Quando o foco VOLTA para o campo de entrada, limpa a area de resumo de aposta
 frm.inNumeroCavalo.addEventListener("focus", () => {
     areaApostasAtual.innerText = ""
+    mostrarApostas()
 })
 
 function totalizarUmCavalo(numero){
@@ -95,10 +96,57 @@ function mostrarApostas() {
     areaPrincipal.innerText = aux;
 }
 
-window.addEventListener("load", () => {
-    mostrarCavalos()
+//FUnção do Botão RESUMO
+frm.btResumo.addEventListener("click", () => {
+
+    if(apostas.length == 0){
+        alert("Não há apostas para Resumir");
+        return;
+    }
+
+    aux = `Nº Cavalo........Nº Apostas........ R$ Apostado\n${"-".repeat(50)}\n`
+    
+    //Pega o Array de Cavalos e vai indice por indice usando a função "totalizarUmCavalo" para pegar qunt e valor
+    for (let cavalo in listaCavalos) {
+        let[quant, soma] = totalizarUmCavalo(cavalo)
+
+        aux += `${Number(cavalo)+1} - ${listaCavalos[cavalo].padEnd(15)} ${quant} ${soma.toFixed(2).padStart(20)}\n`
+    }
+
+    areaPrincipal.innerText = aux
+
 })
 
-//Aqui estou na minha Branch de TESTE!!! Posso bagunçar tudo que tem uma versão salva de teset
+frm.btGanhador.addEventListener("click", () => {
 
-//Colocar a função de RESUMO den
+    const ganhador = Number(prompt("Qual o Numero do Cavalo Ganhador: "))
+    
+    if(isNaN(ganhador) || ganhador == 0 || ganhador > listaCavalos.length){
+        alert("Cavalo Invalido.");
+        return;
+    }
+
+    //Somar o TOTAL apostado
+    const total = apostas.reduce((acumulador, cadaAposta) => acumulador += cadaAposta.valor, 0)
+    
+    //Chama função "totalizarUmCavalo" que devolve Quantidade de Aposta e a Soma delas
+    const[apostaNoGanhador, somaGanhador] = totalizarUmCavalo(ganhador-1)
+
+    let aux = "Resumo Final da Corrida\n"
+    aux += "-".repeat(40) + "\n"
+    aux += `Numero Total de Apostas:         ${apostas.length}\n`
+    aux += `Total Apostado R$:              ${total.toFixed(2)}\n`
+    aux += "\nGanhador: Nº" + ganhador + " - " + listaCavalos[ganhador-1]
+    aux += "\n\nNº de Apostas: " + apostaNoGanhador
+    aux += "\nValor apostado R$: " + somaGanhador.toFixed(2)
+    aux += "\nPremio final de cada apostador R$: " + (total/apostaNoGanhador).toFixed(2)    
+
+    areaPrincipal.innerText = aux
+
+})
+
+window.addEventListener("load", () => {
+    if(listaCavalos.length != 0){mostrarCavalos();}
+    if(apostas.length != 0){ mostrarApostas(); }
+});
+
