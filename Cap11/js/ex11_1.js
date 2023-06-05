@@ -31,7 +31,6 @@ frm.addEventListener("submit", (e) => {
     mostrarApostas()
 
     frm.inNumeroCavalo.value = ""
-    frm.inNumeroCavalo.focus()
     frm.inAposta.value = ""
 
     //Passa o numero do cavalo e recebe 2 respostas
@@ -42,7 +41,36 @@ frm.addEventListener("submit", (e) => {
 
 })
 
-//Entra com o Numero do cavalo e recebe QUANT de aposta e SOMA das apostas
+//Quando digita o nº de um cavalo e SAI DO CAMPO, totaliza as aposta desse cavalo
+frm.inNumeroCavalo.addEventListener("blur", () => {
+    
+    if(frm.inNumeroCavalo.value == ""){ 
+        areaApostasAtual.innerText = ""; 
+        return;
+    }
+
+
+    let numero = (frm.inNumeroCavalo.value)-1
+    let contador = 0
+    let soma = 0
+
+    apostas.forEach(cada => {
+        if(cada.cavalo == numero){
+            contador++;
+            soma += cada.valor
+        }
+    })
+
+    let aux = `O cavalo ${numero+1} teve ${contador} apostas = Total R$ ${soma}`;
+    areaApostasAtual.innerText = aux
+
+})
+
+//Quando o foco VOLTA para o campo de entrada, limpa a area de resumo de aposta
+frm.inNumeroCavalo.addEventListener("focus", () => {
+    areaApostasAtual.innerText = ""
+})
+
 function totalizarUmCavalo(numero){
     let contador = 0
     let soma = 0
@@ -72,3 +100,5 @@ window.addEventListener("load", () => {
 })
 
 //Aqui estou na minha Branch de TESTE!!! Posso bagunçar tudo que tem uma versão salva de teset
+
+//Colocar a função de RESUMO den
