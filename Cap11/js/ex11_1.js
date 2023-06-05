@@ -99,11 +99,6 @@ window.addEventListener("load", () => {
     mostrarCavalos()
 })
 
-<<<<<<< HEAD
-
-// AQUI EventSource, NA MINHA MASTER!!!!
-=======
 //Aqui estou na minha Branch de TESTE!!! Posso bagunçar tudo que tem uma versão salva de teset
 
 //Colocar a função de RESUMO den
->>>>>>> Alteracao_ordem_Blue
