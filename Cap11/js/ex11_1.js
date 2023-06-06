@@ -4,13 +4,15 @@ const areaListaCavalos = document.querySelector("#outListaCavalos")
 const areaPrincipal = document.querySelector("#outPrincipal")
 
 //por enquanto a lista de cavalos esta fixa. Mas vai ser dinamica depois
-const listaCavalos = ["Marujo", "Tordilho", "Belga", "Twister", "Jade", "Luck"];
-const apostas = [{cavalo:0, valor:100},{cavalo:1, valor:200},{cavalo:2, valor:300},
+let listaCavalos = ["Marujo", "Tordilho", "Belga", "Twister", "Jade", "Luck"];
+let apostas = [{cavalo:0, valor:100},{cavalo:1, valor:200},{cavalo:2, valor:300},
                  {cavalo:3, valor:400},{cavalo:4, valor:500},{cavalo:5, valor:600},
                  {cavalo:1, valor:150},{cavalo:3, valor:160},{cavalo:5, valor:170}];
 
 
 function mostrarCavalos() {
+
+    if(listaCavalos.length == 0) {alert("Não há cavalos para exibir"); return }
 
     let aux = "Lista Atual dos Cavalos:\n" + "-".repeat(25) + "\n"
     
@@ -20,6 +22,14 @@ function mostrarCavalos() {
 
     areaListaCavalos.innerText = aux;
 }
+
+frm.btAddCavalo.addEventListener("click", () => {
+
+    let cavalo = prompt("Qual o nome do Cavalo: ")
+    listaCavalos.push(cavalo)
+    mostrarCavalos()
+
+})
 
 frm.addEventListener("submit", (e) => {
 
@@ -66,10 +76,12 @@ frm.inNumeroCavalo.addEventListener("blur", () => {
 
 })
 
-//Quando o foco VOLTA para o campo de entrada, limpa a area de resumo de aposta
+//Quando o foco VOLTA para o campo de entrada, apaga resumo e mostra as apostas atuais SE TIVER.
 frm.inNumeroCavalo.addEventListener("focus", () => {
-    areaApostasAtual.innerText = ""
-    mostrarApostas()
+    if(apostas.length != 0){
+        areaApostasAtual.innerText = ""
+        mostrarApostas()
+    }
 })
 
 function totalizarUmCavalo(numero){
@@ -96,7 +108,6 @@ function mostrarApostas() {
     areaPrincipal.innerText = aux;
 }
 
-//FUnção do Botão RESUMO
 frm.btResumo.addEventListener("click", () => {
 
     if(apostas.length == 0){
@@ -139,10 +150,22 @@ frm.btGanhador.addEventListener("click", () => {
     aux += "\nGanhador: Nº" + ganhador + " - " + listaCavalos[ganhador-1]
     aux += "\n\nNº de Apostas: " + apostaNoGanhador
     aux += "\nValor apostado R$: " + somaGanhador.toFixed(2)
-    aux += "\nPremio final de cada apostador R$: " + (total/apostaNoGanhador).toFixed(2)    
+    if(apostaNoGanhador != 0) {aux += "\nPremio final de cada apostador R$: " + (total/apostaNoGanhador).toFixed(2)}
+    //se ninguem apostou no cavalo ganhador, NÂO apresenta o premio ganho, pois daria divisão por Zero.
 
     areaPrincipal.innerText = aux
 
+})
+
+frm.btNovasApostas.addEventListener("click", () => {
+
+    if(confirm("Deseja apagar as apostas?")){
+        areaPrincipal.innerText = ""
+        areaApostasAtual.innerText = ""
+        apostas = []
+        if(confirm("Apagar tambem a lista de Cavalos?"))  { listaCavalos = []; areaListaCavalos.innerText = "" }
+        frm.inNumeroCavalo.focus()
+    }
 })
 
 window.addEventListener("load", () => {
