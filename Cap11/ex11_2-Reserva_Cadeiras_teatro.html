@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="shortcut icon" href="img/livrojs.png" type="image/x-icon">
+    <title>Reserva de Teatro</title>
+</head>
+<body>
+
+<div class="container-fluid">
+<div class="row">
+
+    <div class="col-3">
+        <img src="img/ex11_2.jpg" alt="teatro" class="img-fluid">
+    </div>
+
+    <div class="col-9">
+        <h1>Teatro - Show Musical- Reserva de Poltronas</h1>
+
+        <form>
+            <!-- Dentro do Form temos 1 linha com 3 Colunas -->
+            <div class="row">
+                
+                <div class="col-sm-2">
+                    <p>
+                        <label for="inPoltrona">Nº da Poltrona:</label>
+                        <input type="number" class="form-control" id="inPoltrona" min="1" required autofocus>
+                    </p>                   
+                </div>
+                
+                <div class="col-sm-4">
+                    <input type="submit" value="Reservar" class="btn btn-primary mt-4">
+                    <input type="button" value="Confirmar Reserva" class="btn btn-danger mt-4">
+                </div>
+
+                <div class="col-sm-6">
+                    Legenda:
+                    <p class="mt-2">
+                        <img src="img/disponivel.jpg" class="ms-3"> Disponível
+                        <img src="img/reservada.jpg" class="ms-3"> Reservada
+                        <img src="img/ocupada.jpg" class="ms-3"> Ocupada
+                    </p>
+                </div>
+
+            </div>
+
+        </form>
+
+        <div class="row">
+            <div class="col-sm-12" id="divPalco"> 
+                <p class="bg-primary text-white text-center">Palco do Teatro</p>
+                
+                <!-- Aqui o JavaScrit irá colocar todas as poltronas-->
+            </div>
+        </div>
+
+    </div>
+
+</div> <!-- Fim da div ROW Principal -->
+</div> <!-- Fim da div CONTAINER FLUID  -->
+
+<script src="js/ex11_2.js"></script>
+
+</body>
+</html>
