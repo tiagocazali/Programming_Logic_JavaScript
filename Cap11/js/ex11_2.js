@@ -3,7 +3,7 @@ const palco = document.querySelector("#divPalco");
 
 const poltronas = 240;
 const reservadas = [];
-const ocupadas= [];
+const ocupadas= ['1'];
 
 window.addEventListener("load", () => {
 
@@ -29,5 +29,40 @@ window.addEventListener("load", () => {
         if(i%24 == 0){ palco.appendChild(document.createElement("br"))}
 
     }
+
+})
+
+frm.addEventListener("submit", (e) => {
+
+    e.preventDefault()
+    
+    const escolhida = Number(frm.inPoltrona.value)
+
+    if(escolhida > poltronas || escolhida < 0 || isNaN(escolhida)){
+        alert("Escolha uma poltrona entre 1 e 240");
+        return;
+    }
+
+    if(ocupadas.includes(escolhida.toString())){
+        alert('Poltrona já Ocupada. Escolha outra!')
+        frm.inPoltrona.value = "" ;
+        frm.inPoltrona.focus();
+        return;
+    }
+
+    if(reservadas.includes(escolhida)){
+        alert('Você já reservou essa poltrona!')
+        frm.inPoltrona.value = "" ;
+        frm.inPoltrona.focus();
+        return;
+    }
+
+    reservadas.push(escolhida);
+    
+    let poltronaEscolhida = palco.querySelectorAll("img")[escolhida-1];
+    poltronaEscolhida.src = "img/reservada.jpg"
+
+    frm.inPoltrona.value = ""
+    frm.inPoltrona.focus()
 
 })
