@@ -1,12 +1,17 @@
 const frm = document.querySelector("form");
 const palco = document.querySelector("#divPalco");
+const reset = document.querySelector("#btReset");
 
 const poltronas = 240;
-const reservadas = [];
-const ocupadas= ['1'];
+let reservadas = [];
+let ocupadas= [];
 
 window.addEventListener("load", () => {
 
+    if(localStorage.getItem("teatro_ocupadas")){
+        ocupadas = localStorage.getItem("teatro_ocupadas").split(",")
+    }
+    
     for(let i=1; i<=poltronas; i++){
         
         const figure = document.createElement("figure");
@@ -40,6 +45,8 @@ frm.addEventListener("submit", (e) => {
 
     if(escolhida > poltronas || escolhida < 0 || isNaN(escolhida)){
         alert("Escolha uma poltrona entre 1 e 240");
+        frm.inPoltrona.value = "" ;
+        frm.inPoltrona.focus();
         return;
     }
 
@@ -64,5 +71,38 @@ frm.addEventListener("submit", (e) => {
 
     frm.inPoltrona.value = ""
     frm.inPoltrona.focus()
+
+})
+
+frm.btConfirmarReserva.addEventListener("click", () => {
+
+    let quant = reservadas.length
+
+    let texto = `Finalizar a compra das ${quant} poltronas? \n`
+    texto += `Valor por Poltrona: R$ 5,00 \n`
+    texto += `Total a pagar R$: ${quant*5}`
+
+    if(confirm(texto)){
+        let todasPoltronas = palco.querySelectorAll('img')
+        reservadas.forEach(x => {
+            ocupadas.push(x);
+            todasPoltronas[x-1].src = "img/ocupada.jpg"
+        })
+
+        reservadas=[];
+        localStorage.setItem("teatro_ocupadas", ocupadas);
+    }
+
+    frm.inPoltrona.value = "" ;
+    frm.inPoltrona.focus();
+
+})
+
+reset.addEventListener("click", () => {
+
+    if(confirm("Deseja limpar a venda dos ingrssos?")){
+        localStorage.removeItem("teatro_ocupadas")
+        window.location.reload()
+    }
 
 })
