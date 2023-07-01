@@ -50,7 +50,7 @@ frm.addEventListener("submit", (e) => {
         return;
     }
 
-    if(ocupadas.includes(escolhida.toString())){
+    if(ocupadas.includes(escolhida)){
         alert('Poltrona já Ocupada. Escolha outra!')
         frm.inPoltrona.value = "" ;
         frm.inPoltrona.focus();
