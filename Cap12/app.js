@@ -14,7 +14,7 @@ app.get('/cap12', (req, res) => {
 app.use(express.json());  //Uso de Middleware, SEMPRE ANTES DE UMA ARROW FUNCTION
 app.post('/filmes', (req, res) => {
   const {titulo, genero} = req.body; //Usado Desestruturação de dados - Pega o Array e separa em 2 variáveis
-  res.send(`Filme: ${titulo} Genero: ${genero}, recebido...`)
+  res.send(`Filme: ${titulo} Genero: ${genero}, recebido e Salvo no Servidor`)
 })
 
 
