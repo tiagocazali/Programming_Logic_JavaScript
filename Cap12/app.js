@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const port = 3001
+const livros = require('./livros')
 
 app.get('/', (req, res) => {
   res.send('Hello World! - Seja Bem vindo!')
@@ -27,6 +28,8 @@ const log = (req, res, next) => {
 app.get('/transfer', log, (req, res) => {
   res.send("Ok! Valor transferido com sucesso!")
 });
+
+app.use('/livros', livros);
 
 app.listen(port, () => {
   console.log(`Example app listening on port http://localhost:${port}`)
