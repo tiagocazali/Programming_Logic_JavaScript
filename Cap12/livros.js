@@ -1,7 +1,5 @@
 const express = require("express");
 const router = express.Router();
-
-const dbKnex = require("./data/db_config");
 const dbknex = require("./data/db_config");
 
 //get - usado para consulta
