@@ -71,7 +71,11 @@ const InclusaoLivros = () => {
                 <input type="rest" className="btn btn-danger mt-3 ms-3" value="Limpar" />
             </form>
 
-            <div className="alert"></div>
+            <div className={aviso.startsWith("Ok!") ? 
+                            "alert alert-success" : aviso.startsWith("Erro") ? 
+                            "alert alert-danger" : ""}> {aviso} 
+            </div>
+            
         </div>
     );
 };

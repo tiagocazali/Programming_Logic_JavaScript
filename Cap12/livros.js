@@ -1,7 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const dbknex = require("./data/db_config");
+const cors = require("cors");
 
+router.use(cors());
 //get - Consulta do bd Completo
 router.get("/", async (req, res) => {
     try{
