@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import { inAxios } from "../config_axios";
-import ItemLista from "./ItemLista"
+import { useForm } from "react-hook-form";
+import ItemLista from "./ItemLista";
 
 const ManutencaoLivros = () => {
     
+    const { register, handleSubmit, reset } = useForm();
+
     const[livros, setLivros] = useState([]);
 
     const obterLista = async () => {
@@ -16,6 +19,15 @@ const ManutencaoLivros = () => {
         }
     };
 
+    const filtrarLista = async(campos) => {
+        try{
+            const lista = await inAxios.get(`livros/filtro/${campos.palavra}`);
+            lista.data.length ? setLivros(lista.data) : alert("Não há livros com essa palavra!");
+        }
+        catch(problem){
+            alert(`Erro... não foi possível obter os dados! - ${problem}`);
+        }
+    };
 
     useEffect( () => {
         obterLista();
@@ -30,11 +42,11 @@ const ManutencaoLivros = () => {
                 </div>
 
                 <div className="col-sm-5">
-                    <form>
+                    <form onSubmit={handleSubmit(filtrarLista)}>
                         <div className="input-group mt-3">
-                            <input type="text" className="form-control" placeholder="Titulo ou Autor" required ></input>
+                            <input type="text" className="form-control" placeholder="Titulo ou Autor" required {...register("palavra")} ></input>
                             <input type="submit" className="btn btn-primary" value="Pesquisar"></input>
-                            <input type="button" className="btn btn-danger" value="Todos"></input>
+                            <input type="button" className="btn btn-danger" value="Todos" onClick={ () => { reset({palavra: ""}); obterLista(); } }></input>
                         </div>
                     </form>
                 </div>
